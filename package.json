@@ -7,10 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "bootstrap:site": "node scripts/bootstrap-site.mjs",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:report": "playwright show-report"
+    "bootstrap:site": "node scripts/bootstrap-site.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -65,7 +62,6 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22",
     "@types/react": "19.2.14",
