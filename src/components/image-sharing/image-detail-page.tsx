@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Download, Eye, Heart, Share2, Tag, User } from "lucide-react";
+import { ArrowLeft, Eye, Heart, Tag, User } from "lucide-react";
 import { ContentImage } from "@/components/shared/content-image";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { SchemaJsonLd } from "@/components/seo/schema-jsonld";
@@ -134,18 +134,6 @@ export async function ImageDetailPage({ task, slug }: ImageDetailPageProps) {
                   </div>
                 )}
                 
-                {/* Overlay Actions */}
-                <div className="absolute bottom-4 right-4 flex gap-2">
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition hover:bg-white">
-                    <Heart className="h-5 w-5 text-slate-600" />
-                  </button>
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition hover:bg-white">
-                    <Share2 className="h-5 w-5 text-slate-600" />
-                  </button>
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-600 shadow-lg shadow-cyan-600/25 transition hover:bg-cyan-700">
-                    <Download className="h-5 w-5 text-white" />
-                  </button>
-                </div>
               </div>
 
               {/* Image Info Bar */}
@@ -158,10 +146,6 @@ export async function ImageDetailPage({ task, slug }: ImageDetailPageProps) {
                   <span className="flex items-center gap-1.5">
                     <Heart className="h-4 w-4" />
                     {Math.floor(Math.random() * 500) + 50}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4" />
-                    {new Date(post.publishedAt || Date.now()).toLocaleDateString()}
                   </span>
                 </div>
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-600">
@@ -219,9 +203,6 @@ export async function ImageDetailPage({ task, slug }: ImageDetailPageProps) {
                   <p className="text-xs text-slate-500">Image Creator</p>
                 </div>
               </div>
-              <button className="mt-4 w-full rounded-xl border border-cyan-600 bg-cyan-600 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700">
-                Follow
-              </button>
             </div>
 
             {/* Quick Stats */}
