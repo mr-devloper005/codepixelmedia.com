@@ -38,11 +38,6 @@ import { getFactoryState } from '@/design/factory/get-factory-state'
 import { useAuth } from '@/lib/auth-context'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 
-const NavbarAuthControls = dynamic(
-  () => import('@/components/shared/navbar-auth-controls').then((mod) => mod.NavbarAuthControls),
-  { ssr: false, loading: () => null },
-)
-
 const SIDEBAR_EXPANDED_KEY = 'cpm_sidebar_expanded'
 
 const taskIcons: Record<TaskKey, ComponentType<{ className?: string }>> = {
@@ -82,7 +77,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const taskNav = useMemo(() => SITE_CONFIG.tasks.filter((t) => t.enabled), [])
+  const taskNav = useMemo(() => SITE_CONFIG.tasks.filter((t) => t.enabled && t.key !== 'profile'), [])
   const isDirectory =
     recipe.homeLayout === 'listing-home' || recipe.homeLayout === 'classified-home'
 
@@ -198,11 +193,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <SidebarFooter className="border-sidebar-border border-t p-2">
           <SidebarMenu>
             <SidebarMenuItem className="group-data-[collapsible=icon]:hidden">
-              {isAuthenticated ? (
-                <div className="flex w-full flex-wrap items-center justify-end gap-1 px-0.5 py-1">
-                  <NavbarAuthControls density="compact" />
-                </div>
-              ) : (
+              {!isAuthenticated && (
                 <div className="flex w-full flex-col gap-1.5 px-1 py-0.5">
                   <Button variant="ghost" size="sm" asChild className="h-8 justify-start text-sidebar-foreground hover:bg-sidebar-accent">
                     <Link href="/login" data-nav="auth">
@@ -248,9 +239,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="min-w-0 truncate font-semibold text-foreground">{SITE_CONFIG.name}</span>
           </Link>
           <div className="flex shrink-0 items-center gap-1">
-            {isAuthenticated ? (
-              <NavbarAuthControls density="compact" />
-            ) : (
+            {!isAuthenticated && (
               <>
                 <Button variant="ghost" size="sm" asChild className="h-8 px-2 text-xs">
                   <Link href="/login" data-nav="auth">

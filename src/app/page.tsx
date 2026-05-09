@@ -363,9 +363,6 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
                 Open gallery
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/profile" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                Meet creators
-              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">

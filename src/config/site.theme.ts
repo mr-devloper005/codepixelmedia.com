@@ -4,7 +4,7 @@ export const SITE_THEME = defineSiteTheme({
   shell: 'studio',
   hero: {
     variant: 'gallery-mosaic',
-    eyebrow: 'Premium multi-surface publishing system',
+    eyebrow: 'Explore content through a fluid, aesthetic-first browsing experience',
   },
   home: {
     layout: 'studio-showcase',
