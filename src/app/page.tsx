@@ -355,7 +355,7 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
               Visual publishing system
             </span>
             <h1 className={`mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] sm:text-6xl ${tone.title}`}>
-              Image-led discovery with creator profiles and a more gallery-like browsing rhythm.
+              Explore content through a fluid, aesthetic-first browsing experience.
             </h1>
             <p className={`mt-6 max-w-2xl text-base leading-8 ${tone.muted}`}>{SITE_CONFIG.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
