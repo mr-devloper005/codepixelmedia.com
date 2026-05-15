@@ -12,10 +12,6 @@ import { cn } from '@/lib/utils'
 import { siteContent } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 
-const NavbarAuthControls = dynamic(() => import('@/components/shared/navbar-auth-controls').then((mod) => mod.NavbarAuthControls), {
-  ssr: false,
-  loading: () => null,
-})
 
 const taskIcons: Record<TaskKey, any> = {
   article: FileText,
@@ -150,9 +146,7 @@ export function Navbar() {
               </Link>
             ) : null}
 
-            {isAuthenticated ? (
-              <NavbarAuthControls />
-            ) : (
+            {!isAuthenticated && (
               <div className="hidden items-center gap-2 md:flex">
                 <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
                   <Link href="/login">Sign In</Link>
@@ -282,9 +276,7 @@ export function Navbar() {
             </Link>
           </Button>
 
-          {isAuthenticated ? (
-            <NavbarAuthControls />
-          ) : (
+          {!isAuthenticated && (
             <div className="hidden items-center gap-2 md:flex">
               <Button variant="ghost" size="sm" asChild className="rounded-full px-4">
                 <Link href="/login">Sign In</Link>
