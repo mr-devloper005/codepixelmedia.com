@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { mockTeamMembers } from "@/data/mock-data";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { ArrowRight, Target, Globe } from "lucide-react";
 
 const highlights = [
-  { label: "Images in the gallery", value: "120k+" },
-  { label: "Public profiles", value: "4.2k" },
-  { label: "Creator uploads (30d)", value: "18k" },
+  { label: "Images in gallery", value: "120k+", icon: <Globe className="h-5 w-5" /> },
+  { label: "Public profiles", value: "4.2k", icon: <Globe className="h-5 w-5" /> },
+  { label: "Creator uploads (30d)", value: "18k", icon: <Target className="h-5 w-5" /> },
 ];
 
 const values = [
-  { title: "Images first", description: "The feed is built for photography and visual work—not generic cards or directory noise." },
-  { title: "Identity that matches", description: "Profiles give every creator a clear home: logo, bio, and a path back to their gallery." },
-  { title: "Share with intent", description: "Publish once; your work surfaces in image sharing and on your profile without extra tooling." },
+  { title: "Images first", description: "The feed is built for photography and visual work—not generic cards or directory noise.", icon: <Globe className="h-6 w-6 text-primary" /> },
+  { title: "Identity that matches", description: "Profiles give every creator a clear home: logo, bio, and a path back to their gallery.", icon: <Globe className="h-6 w-6 text-primary" /> },
+  { title: "Share with intent", description: "Publish once; your work surfaces in image sharing and on your profile without extra tooling.", icon: <Target className="h-6 w-6 text-primary" /> },
 ];
 
 export default function AboutPage() {
@@ -25,14 +25,12 @@ export default function AboutPage() {
       title={`About ${SITE_CONFIG.name}`}
       description={`${SITE_CONFIG.name} connects image sharing with public creator profiles—one place to publish visual work and introduce who you are.`}
       actions={
-        <>
-          <Button variant="outline" asChild>
-            <Link href="/team">Meet the Team</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </>
+        <Button asChild>
+          <Link href="/contact" className="flex items-center gap-2">
+            <ArrowRight className="h-4 w-4" />
+            Contact Us
+          </Link>
+        </Button>
       }
     >
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -49,7 +47,10 @@ export default function AboutPage() {
             <div className="grid gap-4 sm:grid-cols-3">
               {highlights.map((item) => (
                 <div key={item.label} className="rounded-lg border border-border bg-secondary/40 p-4">
-                  <div className="text-2xl font-semibold text-foreground">{item.value}</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    {item.icon}
+                    <div className="text-2xl font-semibold text-foreground">{item.value}</div>
+                  </div>
                   <div className="text-xs text-muted-foreground">{item.label}</div>
                 </div>
               ))}
@@ -58,36 +59,23 @@ export default function AboutPage() {
         </Card>
         <div className="space-y-4">
           {values.map((value) => (
-            <Card key={value.title} className="border-border bg-card">
+            <Card key={value.title} className="border-border bg-card transition-transform hover:-translate-y-1">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    {value.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {mockTeamMembers.map((member) => (
-          <Card key={member.id} className="border-border bg-card transition-transform hover:-translate-y-1">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={member.avatar} alt={member.name} />
-                  <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{member.name}</p>
-                  <p className="text-xs text-muted-foreground">{member.role}</p>
-                </div>
-              </div>
-              <p className="mt-3 text-sm text-muted-foreground">{member.bio}</p>
-              <p className="mt-3 text-xs text-muted-foreground">{member.location}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </PageShell>
+          </PageShell>
   );
 }

@@ -174,10 +174,6 @@ export async function ProfileDetailPage({ username }: ProfileDetailPageProps) {
                     Visit Website
                   </Link>
                 ) : null}
-                <button className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-600/25 transition hover:bg-cyan-700">
-                  <Users className="h-4 w-4" />
-                  Follow
-                </button>
               </div>
             </div>
 
